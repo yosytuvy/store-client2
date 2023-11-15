@@ -26,7 +26,7 @@ const Login = () => {
           }
         );
         if (!data) throw new Error();
-        localStorage.setItem("token", data as string);
+        localStorage.setItem("token", data.token as string);
         dispatch(setUserConnected());
         if (singed) return navigate(-2);
         return navigate(-1);

@@ -6,8 +6,13 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
+// import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const ProductPage = () => {
+  const {productId} = useParams();
+  console.log(productId);
+  
   const handleAddToCart = () => {
     console.log("Add to Cart");
   };

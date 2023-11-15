@@ -36,10 +36,7 @@ const ProductPage = () => {
   };
   return (
 
-    <Box display="flex"
-      justifyContent="center"
-      alignItems="center"
-      height="100vh">
+    <Box style={{display:"flex", justifyContent:"center", marginTop:"20px"}}>
       <Card sx={{ maxWidth: 745 }}>
         {product && (
           <CardMedia

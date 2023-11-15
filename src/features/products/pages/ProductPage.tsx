@@ -32,10 +32,14 @@ const ProductPage = () => {
   };
 
   const handleCompare = () => {
-    console.log("comparing products");
+    console.log("Comparing products");
   };
   return (
-    <Box style={{ display: "flex", justifyContent: "center" }}>
+
+    <Box display="flex"
+      justifyContent="center"
+      alignItems="center"
+      height="100vh">
       <Card sx={{ maxWidth: 745 }}>
         {product && (
           <CardMedia
@@ -49,9 +53,9 @@ const ProductPage = () => {
             gutterBottom
             variant="h5"
             component="div"
-            sx={{ textAlign: "center" }}
+            sx={{ textAlign: "center", fontWeight: "bold" }}
           >
-            "iPhone 14 Pro"
+            iPhone 14 Pro
           </Typography>
           <Box color="text.secondary" sx={{ textAlign: "center" }}>
             {product &&
@@ -66,10 +70,10 @@ const ProductPage = () => {
           </Box>
         </CardContent>
         <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-          <Button size="small" onClick={handleAddToCart}>
+          <Button variant="contained" size="small" onClick={handleAddToCart}>
             Add to Cart
           </Button>
-          <Button size="small" onClick={handleCompare}>
+          <Button variant="outlined" size="small" onClick={handleCompare}>
             Compare
           </Button>
         </CardActions>

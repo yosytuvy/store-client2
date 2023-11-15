@@ -4,15 +4,16 @@ import Filters from "../MUI/Filters";
 import PriceFilter from "../MUI/PriceFilter";
 import Products from "../components/Products";
 import Button from "@mui/material/Button";
+
+import { useParams } from "react-router-dom";
 interface CategoryProp {
   title: string;
   filters: string[];
 }
 
 const Category = ({ title, filters }: CategoryProp) => {
+  const { category } = useParams();
   const example = ["a", "b", "c"];
-
-
   const handleApplyFilterClick = () => {
     console.log("Apply Filtering clicked!");
   };
@@ -35,8 +36,7 @@ const Category = ({ title, filters }: CategoryProp) => {
       >
         Apply Filtering
       </Button>
-
-      <Products category="phones"/>
+      <Products category={category as string}/>
     </>
   );
 };

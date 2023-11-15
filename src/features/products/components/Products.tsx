@@ -1,23 +1,33 @@
-import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import products from "../demoData/products";
-import { FC } from "react";
+import ProductCard from "./ProductCard";
 // import { useAppSelector } from "../../../redux/hooks";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import ProductInterface from "../interfaces/productInterface";
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
 type ProductsProps = {
   category: string;
 };
 const Products: FC<ProductsProps> = ({ category }) => {
-  // const products = useAppSelector((state) =>
+  const navigate = useNavigate();
+  const [products, setProducts] = useState<ProductInterface[] | null>(null);
+  useEffect(() => {
+    const getProductsByCategory = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:8181/api/products/category/${category}`
+        );
+        setProducts(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProductsByCategory();
+  }, [category]);
+  //  const products = useAppSelector((state) =>
   //   state.products.products?.filter((product) => product.category === category)
   // );
   return (
@@ -27,23 +37,13 @@ const Products: FC<ProductsProps> = ({ category }) => {
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        {products?.map(
-          (product) =>
-            product.category === category && (
-              <Grid item xs={2} sm={4} md={4} key={product.id}>
-                <Item>
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    style={{ maxWidth: "100%", maxHeight: "150px" }}
-                  />
-                  <Box>{product.name}</Box>
-                  <Box>Company: {product.company}</Box>
-                  <Box>₪{product.price}</Box>
-                </Item>
-              </Grid>
-            )
-        )}
+        {products?.map((product, i) => (
+          <ProductCard
+            product={product}
+            key={i}
+            onClick={() => navigate(`/productPage/${product._id}`)}
+          />
+        ))}
       </Grid>
     </Box>
   );

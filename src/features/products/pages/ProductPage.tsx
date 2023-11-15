@@ -13,7 +13,7 @@ const ProductPage = () => {
   };
 
   const handleCompare = () => {
-    console.log("comparing products");
+    console.log("Comparing products");
   };
 
   const productDetails = {
@@ -24,44 +24,49 @@ const ProductPage = () => {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <Card sx={{ maxWidth: 745 }}>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      height="100vh"
+    >
+      <Card sx={{ maxWidth: 400 }}>
         <CardMedia
-          sx={{ height: 540 }}
+          sx={{ height: 300 }}
           image="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-card-40-iphone14pro-202209?wid=470&hei=556&fmt=jpeg&qlt=95&.v=1663614745409"
-          title="green iguana"
+          title="iPhone 14 Pro"
         />
         <CardContent>
           <Typography
             gutterBottom
             variant="h5"
             component="div"
-            sx={{ textAlign: "center" }}
+            sx={{ textAlign: "center", fontWeight: "bold" }}
           >
-            "iPhone 14 Pro"
+            iPhone 14 Pro
           </Typography>
           <Box
             color="text.secondary"
-            sx={{ textAlign: "center" }}
+            sx={{ textAlign: "center", marginBottom: 2 }}
           >
             {Object.entries(productDetails).map(([key, value], index) => (
-              <div key={index}>
+              <Typography key={index}>
                 <strong>{key}:</strong> {value}
-              </div>
+              </Typography>
             ))}
           </Box>
         </CardContent>
         <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-          <Button size="small" onClick={handleAddToCart}>
+          <Button variant="contained" size="small" onClick={handleAddToCart}>
             Add to Cart
           </Button>
-          <Button size="small" onClick={handleCompare}>
+          <Button variant="outlined" size="small" onClick={handleCompare}>
             Compare
           </Button>
         </CardActions>
       </Card>
-    </div>
+    </Box>
   );
 };
 
-export default ProductPage
+export default ProductPage;

@@ -56,7 +56,7 @@ const ProductPage = () => {
           <Box color="text.secondary" sx={{ textAlign: "center" }}>
             {product &&
               Object.entries(product).map(([key, value], index) => {
-                if (value && !["id", "_id", "rating"].includes(key))
+                if (value && !["id", "_id", "rating", "image"].includes(key))
                   return (
                     <div key={index}>
                       <strong>{key}:</strong> {value}

@@ -18,7 +18,7 @@ const Router = () => {
           <Category title="Electrical products" filters={["1", "2", "3"]} />
         }
       />
-      <Route path={ROUTES.product} element={<ProductPage />} />
+      <Route path={ROUTES.productPage} element={<ProductPage />} />
       <Route path="/" element={<HomePage />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>

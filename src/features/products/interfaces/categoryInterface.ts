@@ -1,5 +1,14 @@
-export interface CategoryInterface {
-  name: string;
+export default interface CategoryInterface {
+  name: categoryType;
   rating: number;
-  url: string;
+  image: string;
 }
+type categoryType =
+  | "phones"
+  | "cameras"
+  | "screens"
+  | "computers"
+  | "refrigerators"
+  | "AC"
+  | "game consoles"
+  | "watches";

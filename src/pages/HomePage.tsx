@@ -1,14 +1,22 @@
 import { Typography, Grid, Box } from "@mui/material";
-import categories from "../features/products/demoData/categories";
 import MuiSelect from "../components/MUI/MuiSelect";
-import { boxHome, boxStyles, innerBoxHome, innerBoxStyles } from "../styles/styles";
+import {
+  boxHome,
+  boxStyles,
+  innerBoxHome,
+  innerBoxStyles,
+} from "../styles/styles";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { setProducts } from "../features/products/slice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CategoryInterface from "../features/products/interfaces/categoryInterface";
 
 const HomePage = () => {
+  const [categories, setCategories] = useState<CategoryInterface[] | null>(
+    null
+  );
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.products.products);
@@ -18,15 +26,18 @@ const HomePage = () => {
         const { data } = await axios.get("http://localhost:8181/api/products");
         if (!data) return;
         dispatch(setProducts(data));
+        const  {data: categories} = await axios.get("http://localhost:8181/api/categories");
+        setCategories(categories)
       } catch (error) {
         console.log(error);
       }
     };
     getProducts();
   }, []);
-  const sortedCategories = [...categories].sort((a, b) => b.rating - a.rating);
+  const sortedCategories = categories && [...categories].sort((a, b) => b.rating - a.rating) || []
   const topCategories = sortedCategories.slice(0, 5);
-  const sortedProducts = products && [...products].sort((a, b) => b.rating! - a.rating!) || [];
+  const sortedProducts =
+    (products && [...products].sort((a, b) => b.rating! - a.rating!)) || [];
   const topProducts = sortedProducts.slice(0, 5);
 
   const imageURL =
@@ -41,9 +52,7 @@ const HomePage = () => {
           backgroundImage: `url(${imageURL})`,
         }}
       >
-        <Box
-          sx={{innerBoxHome}}
-        >
+        <Box sx={{ innerBoxHome }}>
           <Typography
             variant="h5"
             align="center"
@@ -64,6 +73,8 @@ const HomePage = () => {
             {topCategories.map((category, index) => (
               <Grid item xs={2} key={index}>
                 <Box
+                component="div"
+                onClick={() => navigate(`/category/${category.name}`)}
                   sx={{
                     ...boxStyles,
                     "&:hover": {
@@ -87,7 +98,7 @@ const HomePage = () => {
                         borderRadius: 4,
                       }}
                       alt="phone image"
-                      src={category.url}
+                      src={category.image}
                     />
                   </Box>
                 </Box>
@@ -110,7 +121,7 @@ const HomePage = () => {
               <Grid item xs={2} key={index}>
                 <Box
                   component="div"
-                  onClick={()=>navigate(`/productPage/${product._id!}`)}
+                  onClick={() => navigate(`/productPage/${product._id!}`)}
                   sx={{
                     ...boxStyles,
                     "&:hover": {

@@ -13,17 +13,17 @@ export const slice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addProductToCart: (
+    addProductToCartSlice: (
       state,
-      action: PayloadAction<{ product: ProductInCartInterface }>
+      action: PayloadAction< ProductInCartInterface >
     ) => {
-      const { product } = action.payload;
+      const product  = action.payload;
       if (!state.cart) {
         state.cart = [product]
       }
       state.cart.push(product);
     },
-    addQuantityOfProduct: (
+    addQuantityOfProductSlice: (
       state,
       action: PayloadAction<{ productId: string }>
     ) => {
@@ -32,7 +32,7 @@ export const slice = createSlice({
         if (product.productId === productId) product.quantity += 1;
       });
     },
-    subQuantityOfProduct: (
+    subQuantityOfProductSlice: (
       state,
       action: PayloadAction<{ productId: string }>
     ) => {
@@ -41,7 +41,7 @@ export const slice = createSlice({
         if (product.productId === productId) product.quantity -= 1;
       });
     },
-    removeProductFromCart: (
+    removeProductFromCartSlice: (
       state,
       action: PayloadAction<{ productId: string }>
     ) => {
@@ -55,10 +55,10 @@ export const slice = createSlice({
 });
 
 export const {
-  addProductToCart,
-  addQuantityOfProduct,
-  removeProductFromCart,
-  subQuantityOfProduct,
+  addProductToCartSlice,
+  addQuantityOfProductSlice,
+  removeProductFromCartSlice,
+  subQuantityOfProductSlice,
 } = slice.actions;
 
 export default slice.reducer;

@@ -9,6 +9,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductInterface from "../interfaces/productInterface";
+import { ProductInCartInterface } from "../../cart/interfaces/cartItemInterface";
+import { addProductToCart } from "../../cart/utils/cartUtil";
 
 const ProductPage = () => {
   const [product, setProduct] = useState<ProductInterface | null>(null);
@@ -27,16 +29,21 @@ const ProductPage = () => {
     getProductById();
   }, [productId]);
 
-  const handleAddToCart = () => {
-    console.log("Add to Cart");
+  const handleAddProductToCart = () => {
+    const product: ProductInCartInterface = {
+      productId: productId!,
+      quantity: 1,
+    };
+    addProductToCart(product);
   };
 
   const handleCompare = () => {
     console.log("Comparing products");
   };
   return (
-
-    <Box style={{display:"flex", justifyContent:"center", marginTop:"20px"}}>
+    <Box
+      style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
+    >
       <Card sx={{ maxWidth: 745 }}>
         {product && (
           <CardMedia
@@ -59,15 +66,18 @@ const ProductPage = () => {
               Object.entries(product).map(([key, value], index) => {
                 if (value && !["id", "_id", "rating", "image"].includes(key))
                   return (
-                    <div key={index}>
-                      <strong>{key}:</strong> {value}
-                    </div>
+                    <Box key={index}>
+                      <Typography fontWeight="bold" sx={{ display: "inline" }}>
+                        {key}:
+                      </Typography>{" "}
+                      {value}
+                    </Box>
                   );
               })}
           </Box>
         </CardContent>
         <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-          <Button variant="contained" size="small" onClick={handleAddToCart}>
+          <Button variant="contained" size="small" onClick={handleAddProductToCart}>
             Add to Cart
           </Button>
           <Button variant="outlined" size="small" onClick={handleCompare}>

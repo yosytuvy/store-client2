@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductInterface from "../interfaces/productInterface";
 import OLMap from "../components/OLMap";
+
 const ProductPage = () => {
   const [product, setProduct] = useState<ProductInterface | null>(null);
   const { productId } = useParams();
@@ -26,6 +27,7 @@ const ProductPage = () => {
     };
     getProductById();
   }, [productId]);
+    
   const handleAddToCart = () => {
     console.log("Add to Cart");
   };

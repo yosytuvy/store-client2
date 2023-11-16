@@ -27,7 +27,11 @@ const AppHeader = () => {
           signup
         </Button>
         <Box style={{ marginLeft: "auto" }}>
-          <IconButton color="inherit" aria-label="shopping cart">
+          <IconButton
+            color="inherit"
+            aria-label="shopping cart"
+            onClick={() => navigate(ROUTES.cartPage)}
+          >
             <ShoppingCartIcon />
           </IconButton>
           <IconButton

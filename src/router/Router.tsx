@@ -6,6 +6,7 @@ import Category from "../features/products/pages/Category";
 import HomePage from "../pages/HomePage";
 import ErrorPage from "../pages/ErrorPage";
 import ProductPage from "../features/products/pages/ProductPage";
+import CartPage from "../features/cart/pages/CartPage";
 import Compare from "../features/products/pages/Compare";
 
 const Router = () => {
@@ -22,6 +23,7 @@ const Router = () => {
       <Route path={ROUTES.productPage} element={<ProductPage />} />
       <Route path="/" element={<HomePage />} />
       <Route path="*" element={<ErrorPage />} />
+      <Route path={ROUTES.cartPage} element={<CartPage/>}/>
       <Route path={ROUTES.compare} element={<Compare />} />
     </Routes>
   );

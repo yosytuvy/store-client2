@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "ol/ol.css";
 import { Map, View } from "ol";
 import TileLayer from "ol/layer/Tile";
@@ -10,13 +10,11 @@ import { Vector as VectorLayer } from "ol/layer";
 import { Vector as VectorSource } from "ol/source";
 import { Style, Icon } from "ol/style";
 import Box from "@mui/material/Box";
-
 const OLMap = () => {
   useEffect(() => {
     const pointFeature = new Feature(
       new Point(fromLonLat([34.850144, 32.095884]))
     );
-
     const vectorLayer = new VectorLayer({
       source: new VectorSource({
         features: [pointFeature],
@@ -29,7 +27,6 @@ const OLMap = () => {
         }),
       }),
     });
-
     const map = new Map({
       target: "map",
       layers: [
@@ -43,28 +40,20 @@ const OLMap = () => {
         zoom: 15,
       }),
     });
-
     return () => {
       map.setTarget(null!);
     };
   }, []);
-
   return (
     <Box
+      component="div"
+      id="map"
       sx={{
-        display: "flex",
-        alignItems: "flex-end",
-        justifyContent: "center",
-        width: "50%",
-        height: "250px",
-
-        bottom: "0",
-        marginBottom: "20px",
+        width: "100%",
+        height: "300px"
       }}
     >
-      <div id="map" style={{ width: "100%", height: "100%" }}></div>
     </Box>
   );
 };
-
 export default OLMap;

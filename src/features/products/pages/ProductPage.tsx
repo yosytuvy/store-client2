@@ -27,90 +27,73 @@ const ProductPage = () => {
     };
     getProductById();
   }, [productId]);
-
+    
   const handleAddToCart = () => {
     console.log("Add to Cart");
   };
-
   const handleCompare = () => {
     console.log("Comparing products");
   };
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "stretch",
+      }}
+    >
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
           marginTop: "20px",
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "20px",
-          }}
-        >
-          <Card sx={{ maxWidth: 745 }}>
-            {product && (
-              <CardMedia
-                sx={{ height: 540 }}
-                image={product?.image}
-                title={product?.name}
-              />
-            )}
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h5"
-                component="div"
-                sx={{ textAlign: "center", fontWeight: "bold" }}
-              >
-                iPhone 14 Pro
-              </Typography>
-              <Box color="text.secondary" sx={{ textAlign: "center" }}>
-                {product &&
-                  Object.entries(product).map(([key, value], index) => {
-                    if (
-                      value &&
-                      !["id", "_id", "rating", "image"].includes(key)
-                    )
-                      return (
-                        <div key={index}>
-                          <strong>{key}:</strong> {value}
-                        </div>
-                      );
-                  })}
-              </Box>
-            </CardContent>
-            <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-              <Button
-                variant="contained"
-                size="small"
-                onClick={handleAddToCart}
-              >
-                Add to Cart
-              </Button>
-              <Button variant="outlined" size="small" onClick={handleCompare}>
-                Compare
-              </Button>
-            </CardActions>
-          </Card>
-        </Box>
-
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "20px",
-          }}
-        >
-          <OLMap />
-        </Box>
+        <Card sx={{ borderRadius: 5 }}>
+          {product && (
+            <CardMedia
+              sx={{ height: 540 }}
+              image={product?.image}
+              title={product?.name}
+            />
+          )}
+          <CardContent>
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              sx={{ textAlign: "center", fontWeight: "bold" }}
+            >
+              iPhone 14 Pro
+            </Typography>
+            <Box color="text.secondary" sx={{ textAlign: "center" }}>
+              {product &&
+                Object.entries(product).map(([key, value], index) => {
+                  if (value && !["id", "_id", "rating", "image"].includes(key))
+                    return (
+                      <div key={index}>
+                        <strong>{key}:</strong> {value}
+                      </div>
+                    );
+                })}
+            </Box>
+          </CardContent>
+          <CardActions sx={{ display: "flex", justifyContent: "center" }}>
+            <Button variant="contained" size="small" onClick={handleAddToCart}>
+              Add to Cart
+            </Button>
+            <Button variant="outlined" size="small" onClick={handleCompare}>
+              Compare
+            </Button>
+          </CardActions>
+        </Card>
       </Box>
-    </>
+      <Box
+        sx={{
+          marginTop: "20px",
+        }}
+      >
+        <OLMap />
+      </Box>
+    </Box>
   );
 };
-
 export default ProductPage;

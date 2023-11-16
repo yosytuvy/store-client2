@@ -1,13 +1,15 @@
 import { Typography, Grid, Box } from "@mui/material";
 import categories from "../features/products/demoData/categories";
 import MuiSelect from "../components/MUI/MuiSelect";
-import { boxStyles, innerBoxStyles } from "../styles/styles";
+import { boxHome, boxStyles, innerBoxHome, innerBoxStyles } from "../styles/styles";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { setProducts } from "../features/products/slice";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.products.products);
   useEffect(() => {
@@ -35,23 +37,12 @@ const HomePage = () => {
       <Box
         component="div"
         sx={{
-          position: "relative",
-          width: "100%",
-          height: "100%",
+          ...boxHome,
           backgroundImage: `url(${imageURL})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          margin: 0,
         }}
       >
         <Box
-          sx={{
-            textAlign: "center",
-            padding: 2,
-            display: "flex",
-            flexDirection: "column ",
-          }}
+          sx={{innerBoxHome}}
         >
           <Typography
             variant="h5"
@@ -118,6 +109,8 @@ const HomePage = () => {
             {topProducts.map((product, index) => (
               <Grid item xs={2} key={index}>
                 <Box
+                  component="div"
+                  onClick={()=>navigate(`/productPage/${product._id!}`)}
                   sx={{
                     ...boxStyles,
                     "&:hover": {

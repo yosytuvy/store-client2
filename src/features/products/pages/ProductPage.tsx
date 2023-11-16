@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import ProductInterface from "../interfaces/productInterface";
 import { ProductInCartInterface } from "../../cart/interfaces/cartItemInterface";
 import { addProductToCart } from "../../cart/utils/cartUtil";
+import OLMap from "../components/OLMap";
 
 const ProductPage = () => {
   const [product, setProduct] = useState<ProductInterface | null>(null);
@@ -41,8 +42,9 @@ const ProductPage = () => {
     console.log("Comparing products");
   };
   return (
+    <>
     <Box
-      style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
+      style={{ display: "flex", justifyContent: "center", marginTop: "20px"}}
     >
       <Card sx={{ maxWidth: 745 }}>
         {product && (
@@ -85,7 +87,11 @@ const ProductPage = () => {
           </Button>
         </CardActions>
       </Card>
+      <Card>
+      <OLMap/>
+      </Card>
     </Box>
+    </>
   );
 };
 

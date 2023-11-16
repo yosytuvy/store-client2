@@ -15,29 +15,76 @@ const ProductInCartCard: FC<ProductInCartCardProps> = ({ product }) => {
     setQuantity(quantity);
   }, []);
   return (
-    <Card>
-      <Typography>{product.name}</Typography>
-      <Box component="img" src={product.image}></Box>
-      <Typography>price: {product.price}</Typography>
-      <Button
-        onClick={() => {
-          {
-            subQuantityOfProduct(product._id!);
-            if (quantity > 0) setQuantity((q) => (q -= 1));
-          }
-        }}
-      >
-        -
-      </Button>
-      <Typography>quantity: {quantity}</Typography>
-      <Button
-        onClick={() => {
-          addQuantityOfProduct(product._id!);
-          setQuantity((q) => (q += 1));
-        }}
-      >
-        +
-      </Button>
+    <Card
+      sx={{
+        width: "50%",
+        margin: 3,
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        borderRadius: 15,
+      }}
+    >
+      <Box
+        component="img"
+        src={product.image}
+        sx={{ width: 250, height: 250, borderRadius: 15 }}
+      ></Box>
+      <Box sx={{ textAlign: "center" }}>
+        <Typography variant="h6" sx={{ margin: 2 }}>
+          {product.name}
+        </Typography>
+
+        <Typography sx={{ margin: 2, borderBottom: "1px solid #ccc" }}>
+          price: {product.price}$
+        </Typography>
+
+        <Box
+          sx={{
+            display: "flex",
+            margin: 3,
+            alignItems: "center",
+          }}
+        >
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "gold",
+              height: 50,
+              width: 50,
+              borderRadius: "50%",
+              margin: 2,
+              color: "black",
+            }}
+            onClick={() => {
+              {
+                subQuantityOfProduct(product._id!);
+                if (quantity > 0) setQuantity((q) => (q -= 1));
+              }
+            }}
+          >
+            -
+          </Button>
+          <Typography>quantity: {quantity}</Typography>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "gold",
+              height: 50,
+              width: 50,
+              borderRadius: "50%",
+              margin: 2,
+              color: "black",
+            }}
+            onClick={() => {
+              addQuantityOfProduct(product._id!);
+              setQuantity((q) => (q += 1));
+            }}
+          >
+            +
+          </Button>
+        </Box>
+      </Box>
     </Card>
   );
 };

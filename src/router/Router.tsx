@@ -7,6 +7,7 @@ import HomePage from "../pages/HomePage";
 import ErrorPage from "../pages/ErrorPage";
 import ProductPage from "../features/products/pages/ProductPage";
 import CartPage from "../features/cart/pages/CartPage";
+import Compare from "../features/products/pages/Compare";
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="*" element={<ErrorPage />} />
       <Route path={ROUTES.cartPage} element={<CartPage/>}/>
+      <Route path={ROUTES.compare} element={<Compare />} />
     </Routes>
   );
 };

@@ -3,7 +3,8 @@ const ROUTES = {
     signup: "/signup",
     category: "/category/:category",
     productPage: "/productPage/:productId",
-    cartPage: "/cartPage"
+    cartPage: "/cartPage",
+    compare: "/compare"
 };
 
 export default ROUTES;

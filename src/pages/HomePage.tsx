@@ -1,4 +1,4 @@
-import { Typography, Grid, Paper, Box } from "@mui/material";
+import { Typography, Grid, Box } from "@mui/material";
 import categories from "../features/products/demoData/categories";
 import MuiSelect from "../components/MUI/MuiSelect";
 import { boxStyles, innerBoxStyles } from "../styles/styles";
@@ -27,88 +27,126 @@ const HomePage = () => {
   const sortedProducts = products && [...products].sort((a, b) => b.rating! - a.rating!) || [];
   const topProducts = sortedProducts.slice(0, 5);
 
+  const imageURL =
+    "https://images.unsplash.com/photo-1560015534-cee980ba7e13?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
   return (
     <>
       <Box
+        component="div"
         sx={{
-          textAlign: "center",
-          padding: 2,
-          display: "flex",
-          flexDirection: "column ",
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          backgroundImage: `url(${imageURL})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          margin: 0,
         }}
       >
-        <Typography
-          variant="h5"
-          align="center"
+        <Box
           sx={{
-            padding: 5,
+            textAlign: "center",
+            padding: 2,
+            display: "flex",
+            flexDirection: "column ",
           }}
         >
-          Top 5 Categories:
-        </Typography>
-        <Grid
-          container
-          spacing={3}
-          sx={{
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {topCategories.map((category, index) => (
-            <Grid item xs={2} key={index}>
-              <Box sx={boxStyles}>
-                <Paper>
-                  <Typography variant="subtitle1" align="center">
-                    {category.name}
-                  </Typography>
-                  <Box
-                    component="img"
-                    sx={{
-                      height: 200,
-                      width: 200,
-                      borderRadius: 4,
-                    }}
-                    alt="phone image"
-                    src={category.url}
-                  />
-                </Paper>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
+          <Typography
+            variant="h5"
+            align="center"
+            sx={{
+              padding: 5,
+            }}
+          >
+            Top 5 Categories:
+          </Typography>
+          <Grid
+            container
+            spacing={8}
+            sx={{
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {topCategories.map((category, index) => (
+              <Grid item xs={2} key={index}>
+                <Box
+                  sx={{
+                    ...boxStyles,
+                    "&:hover": {
+                      transform: "scale(1.05)",
+                    },
+                  }}
+                >
+                  <Box>
+                    <Typography
+                      variant="subtitle1"
+                      align="center"
+                      sx={{ color: "white" }}
+                    >
+                      {category.name}
+                    </Typography>
+                    <Box
+                      component="img"
+                      sx={{
+                        height: 200,
+                        width: 200,
+                        borderRadius: 4,
+                      }}
+                      alt="phone image"
+                      src={category.url}
+                    />
+                  </Box>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
 
-        <Typography variant="h5" align="center" sx={{ padding: 5 }}>
-          Top 5 Products:
-        </Typography>
-        <Grid
-          container
-          spacing={3}
-          sx={{
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {topProducts.map((product, index) => (
-            <Grid item xs={2} key={index}>
-              <Box sx={boxStyles}>
-                <Paper>
-                  <Typography variant="subtitle1" align="center">
-                    {product.name}
-                  </Typography>
-                  <Box
-                    component="img"
-                    sx={innerBoxStyles}
-                    alt="product image"
-                    src={product.image}
-                  />
-                </Paper>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
-
-        <Box sx={{ textAlign: "center", padding: 10 }}>
-          <MuiSelect />
+          <Typography variant="h5" align="center" sx={{ padding: 5 }}>
+            Top 5 Products:
+          </Typography>
+          <Grid
+            container
+            spacing={8}
+            sx={{
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {topProducts.map((product, index) => (
+              <Grid item xs={2} key={index}>
+                <Box
+                  sx={{
+                    ...boxStyles,
+                    "&:hover": {
+                      transform: "scale(1.05)",
+                    },
+                  }}
+                >
+                  <Box>
+                    <Typography
+                      variant="subtitle1"
+                      align="center"
+                      sx={{ color: "white" }}
+                    >
+                      {product.name}
+                    </Typography>
+                    <Box
+                      component="img"
+                      sx={innerBoxStyles}
+                      alt="product image"
+                      src={product.image}
+                    />
+                  </Box>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+          <Box sx={{ textAlign: "center", padding: 10 }}>
+            <MuiSelect />
+          </Box>
         </Box>
       </Box>
     </>

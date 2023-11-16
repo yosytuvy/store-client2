@@ -6,8 +6,10 @@ import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { setProducts } from "../features/products/slice";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.products.products);
   useEffect(() => {
@@ -118,6 +120,8 @@ const HomePage = () => {
             {topProducts.map((product, index) => (
               <Grid item xs={2} key={index}>
                 <Box
+                  component="div"
+                  onClick={()=>navigate(`/productPage/${product._id!}`)}
                   sx={{
                     ...boxStyles,
                     "&:hover": {

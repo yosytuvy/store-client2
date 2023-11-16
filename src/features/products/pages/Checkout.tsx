@@ -11,15 +11,19 @@ import { Vector as VectorSource } from "ol/source";
 import { Style, Icon } from "ol/style";
 import Box from "@mui/material/Box";
 
-const OLMap = () => {
+const Checkout = () => {
   useEffect(() => {
-    const pointFeature = new Feature(
+    const jerusalemPoint = new Feature(
+      new Point(fromLonLat([34.825692, 32.093603]))
+    );
+
+    const neveMonossonPoint = new Feature(
       new Point(fromLonLat([34.850144, 32.095884]))
     );
 
     const vectorLayer = new VectorLayer({
       source: new VectorSource({
-        features: [pointFeature],
+        features: [jerusalemPoint, neveMonossonPoint],
       }),
       style: new Style({
         image: new Icon({
@@ -39,8 +43,8 @@ const OLMap = () => {
         vectorLayer,
       ],
       view: new View({
-        center: fromLonLat([34.850144, 32.095884]),
-        zoom: 15,
+        center: fromLonLat([34.839346, 32.092607]),
+        zoom: 14,
       }),
     });
 
@@ -57,7 +61,6 @@ const OLMap = () => {
         justifyContent: "center",
         width: "50%",
         height: "250px",
-
         bottom: "0",
         marginBottom: "20px",
       }}
@@ -67,4 +70,4 @@ const OLMap = () => {
   );
 };
 
-export default OLMap;
+export default Checkout;

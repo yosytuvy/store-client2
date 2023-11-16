@@ -10,8 +10,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductInterface from "../interfaces/productInterface";
 import OLMap from "../components/OLMap";
-import { ProductInCartInterface } from "../../cart/interfaces/cartItemInterface";
-import { addProductToCart } from "../../cart/utils/cartUtil";
 
 const ProductPage = () => {
   const [product, setProduct] = useState<ProductInterface | null>(null);
@@ -30,12 +28,8 @@ const ProductPage = () => {
     getProductById();
   }, [productId]);
 
-  const handleAddProductToCart = () => {
-    const product: ProductInCartInterface = {
-      productId: productId!,
-      quantity: 1,
-    };
-    addProductToCart(product);
+  const handleAddToCart = () => {
+    console.log("Add to Cart");
   };
 
   const handleCompare = () => {
@@ -46,6 +40,7 @@ const ProductPage = () => {
       <Box
         sx={{
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
           marginTop: "20px",
         }}
@@ -103,7 +98,16 @@ const ProductPage = () => {
             </CardActions>
           </Card>
         </Box>
-        <OLMap />
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "20px",
+          }}
+        >
+          <OLMap />
+        </Box>
       </Box>
     </>
   );

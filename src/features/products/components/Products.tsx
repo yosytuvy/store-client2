@@ -31,7 +31,7 @@ const Products: FC<ProductsProps> = ({ category }) => {
   //   state.products.products?.filter((product) => product.category === category)
   // );
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 2 }}>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}

@@ -28,6 +28,9 @@ const AppHeader = () => {
         </Button>
         <Box style={{ marginLeft: "auto" }}>
           <IconButton color="inherit" aria-label="shopping cart">
+        <Button color="inherit" onClick={() => navigateTo(ROUTES.login)}>login</Button>
+        <Box style={{ marginLeft: "auto" }}>
+          <IconButton color="inherit" aria-label="shopping cart" onClick={() => navigateTo("")}>
             <ShoppingCartIcon />
           </IconButton>
           <IconButton

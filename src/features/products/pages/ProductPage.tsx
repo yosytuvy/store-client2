@@ -52,7 +52,7 @@ const ProductPage = () => {
             component="div"
             sx={{ textAlign: "center", fontWeight: "bold" }}
           >
-            iPhone 14 Pro
+            {product?.name}
           </Typography>
           <Box color="text.secondary" sx={{ textAlign: "center" }}>
             {product &&

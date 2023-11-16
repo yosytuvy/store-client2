@@ -11,7 +11,7 @@ interface CategoryProp {
   filters: string[];
 }
 
-const Category = ({ title, filters }: CategoryProp) => {
+const Category = ({ filters }: CategoryProp) => {
   const { category } = useParams();
   const example = ["a", "b", "c"];
   const handleApplyFilterClick = () => {
@@ -37,7 +37,7 @@ const Category = ({ title, filters }: CategoryProp) => {
       >
         <Box textAlign="center">
           <Typography variant="h4" gutterBottom sx={{ color: "white" }}>
-            {title}
+            {category}
           </Typography>
           <PriceFilter />
         </Box>

@@ -8,6 +8,7 @@ import ErrorPage from "../pages/ErrorPage";
 import ProductPage from "../features/products/pages/ProductPage";
 import CartPage from "../features/cart/pages/CartPage";
 import Compare from "../features/products/pages/Compare";
+import Checkout from "../features/products/pages/Checkout";
 
 const Router = () => {
   return (
@@ -17,7 +18,7 @@ const Router = () => {
       <Route
         path={ROUTES.category}
         element={
-          <Category title="Electrical products" filters={["1", "2", "3"]} />
+          <Category/>
         }
       />
       <Route path={ROUTES.productPage} element={<ProductPage />} />
@@ -25,6 +26,7 @@ const Router = () => {
       <Route path="*" element={<ErrorPage />} />
       <Route path={ROUTES.cartPage} element={<CartPage/>}/>
       <Route path={ROUTES.compare} element={<Compare />} />
+      <Route path={ROUTES.checkout} element={<Checkout />} />
     </Routes>
   );
 };

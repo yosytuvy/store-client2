@@ -1,18 +1,22 @@
-import { Control, FieldErrors } from "react-hook-form";
-import FormValues from "./FormValues";
 import {
   FilledInputProps,
   InputProps,
   OutlinedInputProps,
+  SxProps,
+  Theme,
 } from "@mui/material";
+import { Control, FieldErrors } from "react-hook-form";
 
-type PasswordFieldProps = {
+export type FormValues = Record<string, unknown>;
+
+type FieldProps = {
   label: string;
   inputProps?: Partial<FilledInputProps | OutlinedInputProps | InputProps>;
-  name: keyof FormValues;
+  name: string;
   control: Control<FormValues, unknown>;
   errors: FieldErrors<FormValues>;
   type?: string;
+  sx?:  SxProps<Theme>
 };
 
-export default PasswordFieldProps;
+export default FieldProps;

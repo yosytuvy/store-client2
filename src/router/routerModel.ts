@@ -4,7 +4,8 @@ const ROUTES = {
     category: "/category/:category",
     productPage: "/productPage/:productId",
     cartPage: "/cartPage",
-    compare: "/compare"
+    compare: "/compare",
+    checkout: "/checkout"
 };
 
 export default ROUTES;

@@ -1,38 +1,40 @@
 import { FormControl, TextField } from "@mui/material";
-import { Controller } from "react-hook-form";
-import  { FC } from "react";
-import TextFieldsProps from "../types/TextFieldProps";
+import { Controller, FieldError } from "react-hook-form";
+import { FC } from "react";
+import TextFieldsProps from "../types/FieldProps";
 import errorToTrue from "../utils/errorToTrue";
 import ErrorMessage from "./ErrorMessage";
 
-const TextFields: FC<TextFieldsProps> = ({
+const ControlledTextField: FC<TextFieldsProps> = ({
   label,
   inputProps,
   name,
   control,
   errors,
-  type
+  type,
+  sx,
 }) => {
+  const error = errors[name] as FieldError;
   return (
-    <FormControl fullWidth sx={{ mb: "1rem" }}>
+    <FormControl fullWidth sx={sx ? sx : { mb: "1rem" }}>
       <Controller
         name={name}
         control={control}
-        render={({ field }) => 
-          (<TextField
+        render={({ field }) => (
+          <TextField
             {...field}
-            {...errorToTrue(errors[name])}
+            {...errorToTrue(error)}
             required
             label={label}
-            variant="filled"
+            variant="outlined"
             InputProps={inputProps}
             type={type}
-          />)
-        }
+          />
+        )}
       />
-      {errors[name] ? <ErrorMessage errorMessage={errors[name]}/>: null}
+      {error ? <ErrorMessage errorMessage={error} /> : null}
     </FormControl>
   );
 };
 
-export default TextFields;
+export default ControlledTextField;

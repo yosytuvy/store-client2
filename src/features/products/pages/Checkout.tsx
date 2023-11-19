@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import "ol/ol.css";
 import { Map, View } from "ol";
 import TileLayer from "ol/layer/Tile";
@@ -10,6 +10,7 @@ import { Vector as VectorLayer } from "ol/layer";
 import { Vector as VectorSource } from "ol/source";
 import { Style, Icon } from "ol/style";
 import Box from "@mui/material/Box";
+import { Typography } from "@mui/material";
 
 const Checkout = () => {
   useEffect(() => {
@@ -47,7 +48,6 @@ const Checkout = () => {
         zoom: 14,
       }),
     });
-
     return () => {
       map.setTarget(null!);
     };
@@ -65,7 +65,12 @@ const Checkout = () => {
         marginBottom: "20px",
       }}
     >
-      <div id="map" style={{ width: "100%", height: "100%" }}></div>
+      <Typography>the sheep is on the way...</Typography>
+      <Box
+        component="div"
+        id="map"
+        style={{ width: "100%", height: "100%" }}
+      ></Box>
     </Box>
   );
 };

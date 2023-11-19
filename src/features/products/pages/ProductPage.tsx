@@ -5,32 +5,20 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
-import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import ProductInterface from "../interfaces/productInterface";
 import OLMap from "../components/OLMap";
 import { addProductToCart } from "../../cart/utils/cartUtil";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../../redux/hooks";
 
 const ProductPage = () => {
-  const [product, setProduct] = useState<ProductInterface | null>(null);
   const { productId } = useParams();
-  useEffect(() => {
-    const getProductById = async () => {
-      try {
-        const { data } = await axios.get(
-          `http://localhost:8181/api/products/id/${productId}`
-        );
-        setProduct(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getProductById();
-  }, [productId]);
-
+  const product = useAppSelector((state) =>
+    state.products.products?.find(({ _id }) => _id === productId)
+  );
+  const navigate = useNavigate();
   const handleCompare = () => {
-    console.log("Comparing products");
+    navigate(`/category/${product!.category}/${productId}`);
   };
   return (
     <Box

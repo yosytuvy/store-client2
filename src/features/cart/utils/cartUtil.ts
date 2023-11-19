@@ -58,3 +58,10 @@ export const addProductToCart = (product: ProductInCartInterface) => {
   cart.push(product);
   saveCartToLocalStorage(cart);
 };
+
+export const removeProductFromCart = (productId: string) => {
+  let cart = getCartFromLocalStorage();
+  const index = cart!.findIndex((product) => product.productId === productId);
+  cart = cart!.splice(index!, 0);
+  saveCartToLocalStorage(cart);
+};

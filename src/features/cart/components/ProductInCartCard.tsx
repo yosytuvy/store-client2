@@ -4,6 +4,7 @@ import ProductInterface from "../../products/interfaces/productInterface";
 import {
   addQuantityOfProduct,
   getQuantityOfProduct,
+  removeProductFromCart,
   subQuantityOfProduct,
 } from "../utils/cartUtil";
 import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";

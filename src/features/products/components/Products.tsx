@@ -10,8 +10,9 @@ import { useNavigate } from "react-router-dom";
 
 type ProductsProps = {
   category: string;
+  productToCompare?: ProductInterface;
 };
-const Products: FC<ProductsProps> = ({ category }) => {
+const Products: FC<ProductsProps> = ({ category, productToCompare }) => {
   const navigate = useNavigate();
   const [products, setProducts] = useState<ProductInterface[] | null>(null);
   useEffect(() => {
@@ -27,9 +28,6 @@ const Products: FC<ProductsProps> = ({ category }) => {
     };
     getProductsByCategory();
   }, [category]);
-  //  const products = useAppSelector((state) =>
-  //   state.products.products?.filter((product) => product.category === category)
-  // );
   return (
     <Box sx={{ flexGrow: 2 }}>
       <Grid
@@ -37,13 +35,25 @@ const Products: FC<ProductsProps> = ({ category }) => {
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        {products?.map((product, i) => (
-          <ProductCard
-            product={product}
-            key={i}
-            onClick={() => navigate(`/productPage/${product._id}`)}
-          />
-        ))}
+        {!productToCompare &&
+          products?.map((product, i) => (
+            <ProductCard
+              product={product}
+              key={i}
+              onClick={() => navigate(`/productPage/${product._id}`)}
+            />
+          ))}
+        {productToCompare &&
+          products?.map((product, i) => {
+            if (productToCompare._id === product._id) return;
+            return (
+              <ProductCard
+                product={product}
+                key={i}
+                onClick={() => navigate(`/compare/${product._id}/${productToCompare._id}`)}
+              />
+            );
+          })}
       </Grid>
     </Box>
   );

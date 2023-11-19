@@ -4,6 +4,7 @@ import ProductInterface from "../../products/interfaces/productInterface";
 import {
   addQuantityOfProduct,
   getQuantityOfProduct,
+  removeProductFromCart,
   subQuantityOfProduct,
 } from "../utils/cartUtil";
 import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
@@ -45,7 +46,7 @@ const ProductInCartCard: FC<ProductInCartCardProps> = ({ product }) => {
               {
                 subQuantityOfProduct(product._id!);
                 if (quantity > 0) return setQuantity((q) => (q -= 1));
-                return 
+                removeProductFromCart(product._id!)
               }
             }}
           >

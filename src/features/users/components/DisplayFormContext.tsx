@@ -17,7 +17,7 @@ const DisplayFormContext: FC<DisplayFormContextProps> = ({
   errors,
 }) => {
   return formValues.map((value, i) => {
-    const label = splitCamelCase(value)
+    const label = splitCamelCase(value);
     if (value.toLocaleLowerCase().includes("password"))
       return (
         <ControlledPasswordField
@@ -26,6 +26,7 @@ const DisplayFormContext: FC<DisplayFormContextProps> = ({
           errors={errors}
           name={value}
           label={label}
+          sx={{ height: 60, position: "relative" }}
         />
       );
     return (
@@ -35,6 +36,7 @@ const DisplayFormContext: FC<DisplayFormContextProps> = ({
         errors={errors}
         name={value}
         label={label}
+        sx={{ height: 60, position: "relative" }}
       />
     );
   });

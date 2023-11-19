@@ -8,7 +8,6 @@ import {
   subQuantityOfProduct,
 } from "../utils/cartUtil";
 import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
-import { ButtonStyle, cardStyle } from "../styles/styles";
 type ProductInCartCardProps = { product: ProductInterface };
 
 const ProductInCartCard: FC<ProductInCartCardProps> = ({ product }) => {
@@ -19,20 +18,30 @@ const ProductInCartCard: FC<ProductInCartCardProps> = ({ product }) => {
   }, []);
   return (
     <Card
-      sx={cardStyle}
+      sx={{
+        height: "30",
+        width: "50%",
+        margin: 3,
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        borderRadius: 5,
+      }}
     >
       <Box
         component="img"
         src={product.image}
-        sx={{ width: 250, height: 250, borderRadius: 15 }}
+        sx={{ width: 250, height: 250, borderRadius: 5 }}
       ></Box>
       <Box sx={{ textAlign: "center" }}>
         <Typography variant="h6" sx={{ margin: 2 }}>
           {product.name}
         </Typography>
+
         <Typography sx={{ margin: 2, borderBottom: "1px solid #ccc" }}>
           price: {product.price}$
         </Typography>
+
         <Box
           sx={{
             display: "flex",
@@ -45,8 +54,7 @@ const ProductInCartCard: FC<ProductInCartCardProps> = ({ product }) => {
             onClick={() => {
               {
                 subQuantityOfProduct(product._id!);
-                if (quantity > 0) return setQuantity((q) => (q -= 1));
-                removeProductFromCart(product._id!)
+                if (quantity > 0) setQuantity((q) => (q -= 1));
               }
             }}
           >

@@ -49,10 +49,11 @@ const OLMap = () => {
       component="div"
       id="map"
       sx={{
-        width: "96%",
+        width: "70%",
         height: "300px",
         position: "absolute",
         top: "150%",
+        left: "15%",
         marginTop: "10px",
         padding: "20px",
         borderRadius: "8px",

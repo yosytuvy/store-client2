@@ -30,10 +30,11 @@ const ProductPage = () => {
     >
       <Box
         sx={{
+          width: "35%",
           marginTop: "20px",
           position: "absolute",
           top: "5%",
-          left: "35%",
+          left: "30%",
           padding: "40px",
         }}
       >

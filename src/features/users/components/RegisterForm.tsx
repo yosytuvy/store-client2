@@ -16,8 +16,6 @@ const RegisterForm = () => {
     "confirmPassword",
     "phone",
     "address",
-    "id",
-    "notes",
   ];
   return (
     <Box
@@ -33,7 +31,7 @@ const RegisterForm = () => {
         noValidate
         component="form"
         onSubmit={handleSubmit}
-        sx={{ width: "100%", mt: "2rem" }}
+        sx={{ width: "100%", mt: "1rem", height: "100%" }}
       >
         <DisplayFormContext
           control={control}

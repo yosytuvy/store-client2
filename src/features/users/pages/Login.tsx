@@ -40,15 +40,12 @@ const Login = () => {
       <Stack
         sx={{
           position: "absolute",
-          top: "5%",
+          top: "20%",
           left: "35%",
           marginTop: "70px",
           padding: "40px",
           borderRadius: "8px",
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-          // maxWidth: "300px",
-          // width: "100%",
-          // margin: "20px auto",
         }}
       >
         <TextField
@@ -88,10 +85,6 @@ const Login = () => {
           style={{ marginBottom: "15px" }}
         >
           Login
-        </Button>
-        <Button onClick={() => navigate(ROUTES.signup)}>signup</Button>
-        <Button>
-          <SignupModal />
         </Button>
       </Stack>
     </Box>

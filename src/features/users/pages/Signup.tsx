@@ -75,13 +75,6 @@ const Signup = () => {
   return (
     <Stack
       sx={{
-        // marginTop: "50px",
-        // padding: "50px",
-        // borderRadius: "8px",
-        // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-        // maxWidth: "300px",
-        // width: "100%",
-        // margin: "20px auto",
         position: "absolute",
         top: "5%",
         left: "35%",

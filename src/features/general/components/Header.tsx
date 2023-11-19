@@ -12,27 +12,11 @@ const AppHeader = () => {
   const navigate = useNavigate();
   const navigateTo = (to: string) => navigate(to);
   return (
-    <AppBar
-    // // position="static"
-    // sx={{
-    //   // bottom: 0,
-    //   // right: 0,
-    //   paddingBottom: 0,
-    // }}
-    >
+    <AppBar>
       <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-        ></IconButton>
         <Button color="inherit" onClick={() => navigateTo(ROUTES.login)}>
           login
         </Button>
-        {/* <Button color="inherit" onClick={() => navigateTo(ROUTES.signup)}>
-          signup
-        </Button> */}
         <Box style={{ marginLeft: "auto" }}>
           <IconButton
             color="inherit"

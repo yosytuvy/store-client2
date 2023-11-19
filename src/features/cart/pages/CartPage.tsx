@@ -16,39 +16,39 @@ const CartPage = () => {
 
   return (
     <Box
-      display="grid"
-      justifyItems="center"
       sx={{
         position: "relative",
         width: "100%",
-        height: "100%",
+        height: "99%",
         backgroundImage: `url(${imageURL})`,
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        margin: 0,
       }}
     >
-      {productsInCart &&
-        productsInCart.length &&
-        productsInCart.every((p) => p !== undefined) &&
-        productsInCart.map((product, i) => (
-          <ProductInCartCard key={i} product={product!} />
-        ))}
-      <Box
-        sx={{
-          color: "white",
-          backgroundColor: "black",
-          borderRadius: 5,
-          margin: 5,
-          "&:hover": {
-            transform: "scale(1.05)",
+      <Box sx={{ height: 70 }}></Box>
+      <Box display="grid" justifyItems="center">
+        {productsInCart &&
+          productsInCart.length &&
+          productsInCart.every((p) => p !== undefined) &&
+          productsInCart.map((product, i) => (
+            <ProductInCartCard key={i} product={product!} />
+          ))}
+        <Box
+          sx={{
+            margin: 3,
             color: "white",
-            backgroundColor: "blue",
-          },
-        }}
-      >
-        <SignupModal/>
+            backgroundColor: "black",
+            borderRadius: 5,
+            "&:hover": {
+              transform: "scale(1.05)",
+              color: "white",
+              backgroundColor: "blue",
+            },
+          }}
+        >
+          <SignupModal />
+        </Box>
       </Box>
     </Box>
   );

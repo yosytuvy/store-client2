@@ -4,14 +4,14 @@ export const cardStyle = {
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-  borderRadius: 15,
+  borderRadius: 5,
 };
 
 export const ButtonStyle = {
-    backgroundColor: "gold",
-    height: 50,
-    width: 50,
-    borderRadius: "50%",
-    margin: 2,
-    color: "black",
-  }
+  backgroundColor: "gold",
+  height: 50,
+  width: 50,
+  borderRadius: "50%",
+  margin: 2,
+  color: "black",
+};

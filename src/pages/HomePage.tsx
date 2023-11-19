@@ -3,29 +3,32 @@ import { Box } from "@mui/material";
 import { boxHome, innerBoxHome } from "../styles/styles";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { setProducts } from "../features/products/slice";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CategoryInterface from "../features/products/interfaces/categoryInterface";
 import getTopFive from "../helpers/getTopFive";
 import ProductInterface from "../features/products/interfaces/productInterface";
 import CategoriesGrid from "../components/CategoriesGrid";
 import ProductsGrid from "../components/ProductsGrid";
+import { setCategories } from "../features/categories/slice";
 
 const HomePage = () => {
-  const categoriesRef = useRef<CategoryInterface[] | null>(null);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.products.products);
+  const categories = useAppSelector((state) => state.categories.categories);
+  console.log(categories);
+  
   useEffect(() => {
     const getProducts = async () => {
       try {
-        if (products && categoriesRef.current) return;
-        const { data } = await axios.get("http://localhost:8181/api/products");
+        if (products && categories) return;
+        const { data } = await axios.get("https://store-epuk.onrender.com/api/products");
         dispatch(setProducts(data));
-        const { data: categories } = await axios.get(
-          "http://localhost:8181/api/categories"
+        const { data: categoriesFromServer } = await axios.get(
+          "https://store-epuk.onrender.com/api/categories"
         );
-        categoriesRef.current = categories;
+        dispatch(setCategories(categoriesFromServer))
       } catch (error) {
         console.log(error);
       }
@@ -33,8 +36,8 @@ const HomePage = () => {
     getProducts();
   }, []);
   const topCategories =
-    (categoriesRef.current &&
-      (getTopFive(categoriesRef.current) as CategoryInterface[])) ||
+    (categories &&
+      (getTopFive(categories) as CategoryInterface[])) ||
     [];
   const topProducts =
     (products && (getTopFive(products) as ProductInterface[])) || [];
@@ -51,9 +54,8 @@ const HomePage = () => {
     >
       <Box sx={{ innerBoxHome }}>
         <CategoriesGrid
-          categories={topCategories}
+          topCategories={topCategories}
           navigate={navigate}
-          categoriesRef={categoriesRef}
         />
         <ProductsGrid products={topProducts} navigate={navigate} />
         <Box sx={{ textAlign: "center", padding: 10 }}></Box>

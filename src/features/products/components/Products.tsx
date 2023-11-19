@@ -1,33 +1,19 @@
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import ProductCard from "./ProductCard";
-// import { useAppSelector } from "../../../redux/hooks";
-import axios from "axios";
-import { useEffect, useState } from "react";
 import ProductInterface from "../interfaces/productInterface";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../../redux/hooks";
 
 type ProductsProps = {
   category: string;
   productToCompare?: ProductInterface;
 };
+
 const Products: FC<ProductsProps> = ({ category, productToCompare }) => {
   const navigate = useNavigate();
-  const [products, setProducts] = useState<ProductInterface[] | null>(null);
-  useEffect(() => {
-    const getProductsByCategory = async () => {
-      try {
-        const { data } = await axios.get(
-          `http://localhost:8181/api/products/category/${category}`
-        );
-        setProducts(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getProductsByCategory();
-  }, [category]);
+  const products = useAppSelector((state) => state.products.products?.filter((product) => product.category === category))
   return (
     <Box sx={{ flexGrow: 2 }}>
       <Grid

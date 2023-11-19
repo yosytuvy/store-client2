@@ -5,15 +5,13 @@ import CategoryItem from "./CategoryItem";
 import { NavigateFunction } from "react-router-dom";
 
 type CategoriesGridProps = {
-  categories: CategoryInterface[];
+  topCategories: CategoryInterface[];
   navigate: NavigateFunction;
-  categoriesRef: React.MutableRefObject<CategoryInterface[] | null>;
 };
 
 const CategoriesGrid: FC<CategoriesGridProps> = ({
-  categories,
+  topCategories,
   navigate,
-  categoriesRef,
 }) => {
   return (
     <>
@@ -34,12 +32,11 @@ const CategoriesGrid: FC<CategoriesGridProps> = ({
           justifyContent: "center",
         }}
       >
-        {categories.map((category, i) => (
+        {topCategories.map((category, i) => (
           <CategoryItem
             key={i}
             category={category}
             navigate={navigate}
-            categoriesRef={categoriesRef}
           />
         ))}
       </Grid>

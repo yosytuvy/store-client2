@@ -43,6 +43,10 @@ const ProductPage = () => {
       <Box
         sx={{
           marginTop: "20px",
+          position: "absolute",
+          top: "5%",
+          left: "35%",
+          padding: "40px",
         }}
       >
         <Card sx={{ borderRadius: 5 }}>

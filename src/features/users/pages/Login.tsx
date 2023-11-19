@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { TextField, Button, Stack } from "@mui/material";
+import { TextField, Button, Stack, Box } from "@mui/material";
 import { isValidEmail, isValidPassword } from "../../../helpers/validations";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../redux/hooks";
@@ -38,58 +38,65 @@ const Login = () => {
   };
 
   return (
-    <Stack
-      sx={{
-        marginTop: "50px",
-        padding: "40px",
-        borderRadius: "8px",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-        maxWidth: "300px",
-        width: "100%",
-        margin: "20px auto",
-      }}
-    >
-      <TextField
+    <Box alignContent="center">
+      <Stack
         sx={{
-          minWidth: "300px",
-          maxWidth: "300px",
+          position: "absolute",
+          top: "5%",
+          left: "35%",
+          marginTop: "70px",
+          padding: "40px",
+          borderRadius: "8px",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+          // maxWidth: "300px",
+          // width: "100%",
+          // margin: "20px auto",
         }}
-        label="Email"
-        variant="outlined"
-        value={email}
-        onChange={(e) => {
-          const isValid = isValidEmail(e.target.value);
-          setEmail(e.target.value);
-          setIsValidEmailInput(isValid);
-        }}
-        error={!isValidEmailInput}
-        helperText={
-          !isValidEmailInput ? "Please enter a valid email address" : ""
-        }
-        style={{ marginBottom: "15px" }}
-      />
-      <TextField
-        sx={{
-          minWidth: "300px",
-          maxWidth: "300px",
-        }}
-        label="Password"
-        type="password"
-        variant="outlined"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        style={{ marginBottom: "15px" }}
-      />
-      <Button
-        onClick={handleLogin}
-        variant="contained"
-        style={{ marginBottom: "15px" }}
       >
-        Login
-      </Button>
-      <Button onClick={() => navigate(ROUTES.signup)}>signup</Button>
-      <SignupModal/>
-    </Stack>
+        <TextField
+          sx={{
+            minWidth: "300px",
+            maxWidth: "300px",
+          }}
+          label="Email"
+          variant="outlined"
+          value={email}
+          onChange={(e) => {
+            const isValid = isValidEmail(e.target.value);
+            setEmail(e.target.value);
+            setIsValidEmailInput(isValid);
+          }}
+          error={!isValidEmailInput}
+          helperText={
+            !isValidEmailInput ? "Please enter a valid email address" : ""
+          }
+          style={{ marginBottom: "15px" }}
+        />
+        <TextField
+          sx={{
+            minWidth: "300px",
+            maxWidth: "300px",
+          }}
+          label="Password"
+          type="password"
+          variant="outlined"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{ marginBottom: "15px" }}
+        />
+        <Button
+          onClick={handleLogin}
+          variant="contained"
+          style={{ marginBottom: "15px" }}
+        >
+          Login
+        </Button>
+        <Button onClick={() => navigate(ROUTES.signup)}>signup</Button>
+        <Button>
+          <SignupModal />
+        </Button>
+      </Stack>
+    </Box>
   );
 };
 

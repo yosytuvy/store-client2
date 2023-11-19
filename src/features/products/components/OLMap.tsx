@@ -49,18 +49,16 @@ const OLMap = () => {
       component="div"
       id="map"
       sx={{
-        // display: "flex",
-        // alignItems: "flex-end",
-        // justifyContent: "center",
-        width: "100%",
+        width: "96%",
         height: "300px",
-        borderRadius: 5,
-        // bottom: "0",
-        // marginBottom: "20px",
+        position: "absolute",
+        top: "150%",
+        marginTop: "10px",
+        padding: "20px",
+        borderRadius: "8px",
+        boxShadow: "0 1px 5px rgba(0, 0, 0, 0.1)",
       }}
-    >
-      {/* <div id="map" style={{ width: "100%", height: "100%" }}></div> */}
-    </Box>
+    ></Box>
   );
 };
 export default OLMap;

@@ -1,4 +1,4 @@
-import { Box, Button, Card, Typography } from "@mui/material";
+import { Box, Card, IconButton, Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import ProductInterface from "../../products/interfaces/productInterface";
 import {
@@ -6,6 +6,7 @@ import {
   getQuantityOfProduct,
   subQuantityOfProduct,
 } from "../utils/cartUtil";
+import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
 type ProductInCartCardProps = { product: ProductInterface };
 
 const ProductInCartCard: FC<ProductInCartCardProps> = ({ product }) => {
@@ -46,16 +47,8 @@ const ProductInCartCard: FC<ProductInCartCardProps> = ({ product }) => {
             alignItems: "center",
           }}
         >
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "gold",
-              height: 50,
-              width: 50,
-              borderRadius: "50%",
-              margin: 2,
-              color: "black",
-            }}
+          <IconButton
+            color="primary"
             onClick={() => {
               {
                 subQuantityOfProduct(product._id!);
@@ -63,26 +56,18 @@ const ProductInCartCard: FC<ProductInCartCardProps> = ({ product }) => {
               }
             }}
           >
-            -
-          </Button>
-          <Typography>quantity: {quantity}</Typography>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "gold",
-              height: 50,
-              width: 50,
-              borderRadius: "50%",
-              margin: 2,
-              color: "black",
-            }}
+            <RemoveCircleOutline />
+          </IconButton>
+          <Typography sx={{ color: "blue" }}>{quantity}</Typography>
+          <IconButton
+            color="primary"
             onClick={() => {
               addQuantityOfProduct(product._id!);
               setQuantity((q) => (q += 1));
             }}
           >
-            +
-          </Button>
+            <AddCircleOutline />
+          </IconButton>
         </Box>
       </Box>
     </Card>

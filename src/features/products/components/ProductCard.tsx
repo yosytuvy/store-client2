@@ -10,7 +10,7 @@ const ProductCard: FC<ProductCardProps> = ({ product, onClick }) => {
     <>
       <Grid item xs={2} sm={4} md={4} key={product._id}>
         <Item
-          onClick={() => onClick()}
+          onClick={onClick}
           sx={{
             margin: 3,
             borderRadius: 5,

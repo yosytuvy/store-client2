@@ -5,8 +5,6 @@ import { isValidEmail, isValidPassword } from "../../../helpers/validations";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../redux/hooks";
 import { setUserConnected } from "../slice";
-import ROUTES from "../../../router/routerModel";
-import SignupModal from "../components/SignupModal";
 
 const Login = () => {
   const [email, setEmail] = useState("");

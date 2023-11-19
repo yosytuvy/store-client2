@@ -1,4 +1,4 @@
-import { Box, Button, Card, Typography } from "@mui/material";
+import { Box, Card, IconButton, Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import ProductInterface from "../../products/interfaces/productInterface";
 import {
@@ -6,6 +6,7 @@ import {
   getQuantityOfProduct,
   subQuantityOfProduct,
 } from "../utils/cartUtil";
+import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
 import { ButtonStyle, cardStyle } from "../styles/styles";
 type ProductInCartCardProps = { product: ProductInterface };
 
@@ -38,9 +39,8 @@ const ProductInCartCard: FC<ProductInCartCardProps> = ({ product }) => {
             alignItems: "center",
           }}
         >
-          <Button
-            variant="contained"
-            sx={ButtonStyle}
+          <IconButton
+            color="primary"
             onClick={() => {
               {
                 subQuantityOfProduct(product._id!);
@@ -49,19 +49,18 @@ const ProductInCartCard: FC<ProductInCartCardProps> = ({ product }) => {
               }
             }}
           >
-            -
-          </Button>
-          <Typography>quantity: {quantity}</Typography>
-          <Button
-            variant="contained"
-            sx={ButtonStyle}
+            <RemoveCircleOutline />
+          </IconButton>
+          <Typography sx={{ color: "blue" }}>{quantity}</Typography>
+          <IconButton
+            color="primary"
             onClick={() => {
               addQuantityOfProduct(product._id!);
               setQuantity((q) => (q += 1));
             }}
           >
-            +
-          </Button>
+            <AddCircleOutline />
+          </IconButton>
         </Box>
       </Box>
     </Card>

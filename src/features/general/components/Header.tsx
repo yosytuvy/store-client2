@@ -12,7 +12,14 @@ const AppHeader = () => {
   const navigate = useNavigate();
   const navigateTo = (to: string) => navigate(to);
   return (
-    <AppBar position="static">
+    <AppBar
+    // // position="static"
+    // sx={{
+    //   // bottom: 0,
+    //   // right: 0,
+    //   paddingBottom: 0,
+    // }}
+    >
       <Toolbar>
         <IconButton
           size="large"

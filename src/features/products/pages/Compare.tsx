@@ -1,10 +1,19 @@
 import { Box, Typography } from "@mui/material";
-import products from "../demoData/products";
 import Table from "@mui/material/Table";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+import { useParams } from "react-router-dom";
+import { useAppSelector } from "../../../redux/hooks";
 
 const Compare = () => {
+  const { productId, productToCompareId } = useParams();
+  const products = useAppSelector((state) =>
+    state.products.products!.filter(
+      (product) =>
+        product._id === productId || product._id === productToCompareId
+    )
+  );
+
   return (
     <>
       <Box
@@ -18,17 +27,16 @@ const Compare = () => {
           sx={{
             height: 450,
             width: "40%",
-            // backgroundColor: "blue",
             borderRadius: 5,
             margin: 4,
           }}
         >
           <Typography variant="h4" align="center">
-            product {products[0].id}
+            {products![0].name}
           </Typography>
           <Box color="text.secondary" sx={{ textAlign: "center" }}>
-            {products[0] &&
-              Object.entries(products[0]).map(([key, value], index) => {
+            {products![0] &&
+              Object.entries(products![0]).map(([key, value], index) => {
                 if (value && !["id", "_id", "rating", "image"].includes(key))
                   return (
                     <Box key={index}>
@@ -51,17 +59,16 @@ const Compare = () => {
           sx={{
             height: 450,
             width: "50%",
-            // backgroundColor: "lightblue",
             borderRadius: 5,
             margin: 4,
           }}
         >
           <Typography variant="h4" align="center">
-            product {products[1].id}
+            {products![1].name}
           </Typography>
           <Box color="text.secondary" sx={{ textAlign: "center" }}>
-            {products[1] &&
-              Object.entries(products[1]).map(([key, value], index) => {
+            {products![1] &&
+              Object.entries(products![1]).map(([key, value], index) => {
                 if (value && !["id", "_id", "rating", "image"].includes(key))
                   return (
                     <Box key={index}>

@@ -4,25 +4,22 @@ import { Box, Grid, Typography } from "@mui/material";
 import { boxStyles } from "../styles/styles";
 import { NavigateFunction } from "react-router-dom";
 import axios from "axios";
+import { setCategoryRating } from "../features/categories/slice";
 
 type CategoryItemProps = {
   category: CategoryInterface;
   navigate: NavigateFunction;
-  categoriesRef: React.MutableRefObject<CategoryInterface[] | null>;
 };
 
 const CategoryItem: FC<CategoryItemProps> = ({
   category,
   navigate,
-  categoriesRef,
 }) => {
   const { name } = category;
   const onClick = async () => {
     try {
-      await axios.put(`http://localhost:8181/api/categories/${category.name}`);
-      categoriesRef.current?.map((category) => {
-        if (category.name === name) category.rating += 1;
-      });
+      await axios.put(`https://store-epuk.onrender.com/api/categories/${category.name}`);
+      setCategoryRating(category.name)
       navigate(`/category/${name}`);
     } catch (error) {
       console.log(error);

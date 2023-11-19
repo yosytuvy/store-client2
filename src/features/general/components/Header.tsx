@@ -23,9 +23,6 @@ const AppHeader = () => {
         <Button color="inherit" onClick={() => navigateTo(ROUTES.login)}>
           login
         </Button>
-        {/* <Button color="inherit" onClick={() => navigateTo(ROUTES.signup)}>
-          signup
-        </Button> */}
         <Box style={{ marginLeft: "auto" }}>
           <IconButton
             color="inherit"

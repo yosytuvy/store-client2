@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { setProducts } from "../features/products/slice";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Category from "../features/products/pages/Category";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -86,7 +87,7 @@ const HomePage = () => {
                         width: 200,
                         borderRadius: 4,
                       }}
-                      alt="phone image"
+                      alt={Category.name}
                       src={category.url}
                     />
                   </Box>
@@ -138,7 +139,7 @@ const HomePage = () => {
             ))}
           </Grid>
           <Box sx={{ textAlign: "center", padding: 10 }}>
-            <MuiSelect />
+            <MuiSelect categories={categories}/>
           </Box>
         </Box>
       </Box>

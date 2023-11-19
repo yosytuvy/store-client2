@@ -9,17 +9,18 @@ import { Option as BaseOption, optionClasses } from "@mui/base/Option";
 import { Popper as BasePopper } from "@mui/base/Popper";
 import { styled } from "@mui/system";
 import UnfoldMoreRoundedIcon from "@mui/icons-material/UnfoldMoreRounded";
+import { CategoryInterface } from "../../features/products/interfaces/categoryInterface";
 
-export default function UnstyledSelectIntroduction() {
-  const arr = [
-    { value: 10, name: "Documentation" },
-    { value: 30, name: "Components" },
-    { value: 20, name: "Features" },
-  ];
+interface UnstyledSelectIntroductionProps {
+  categories:CategoryInterface[];
+}
+
+export default function UnstyledSelectIntroduction({categories}:UnstyledSelectIntroductionProps) {
+
   return (
-    <Select defaultValue={10}>
-      {arr.map(({ value, name }, i) => (
-        <Option key={i} value={value}>
+    <Select defaultValue="selcet category">
+      {categories.map(({ name }, i) => (
+        <Option key={i} value={name}>
           {name}
         </Option>
       ))}

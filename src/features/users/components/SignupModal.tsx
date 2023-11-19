@@ -22,7 +22,7 @@ const style = {
 
   return (
     <Box>
-      <Button onClick={handleOpen}>signup</Button>
+      <Button onClick={handleOpen}>Checkout</Button>
       <Modal
         open={open}
         onClose={handleClose}

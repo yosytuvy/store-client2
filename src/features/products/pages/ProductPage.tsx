@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductInterface from "../interfaces/productInterface";
 import OLMap from "../components/OLMap";
+import { addProductToCart } from "../../cart/utils/cartUtil";
 
 const ProductPage = () => {
   const [product, setProduct] = useState<ProductInterface | null>(null);
@@ -27,10 +28,7 @@ const ProductPage = () => {
     };
     getProductById();
   }, [productId]);
-    
-  const handleAddToCart = () => {
-    console.log("Add to Cart");
-  };
+
   const handleCompare = () => {
     console.log("Comparing products");
   };
@@ -62,7 +60,7 @@ const ProductPage = () => {
               component="div"
               sx={{ textAlign: "center", fontWeight: "bold" }}
             >
-              iPhone 14 Pro
+              {product?.name}
             </Typography>
             <Box color="text.secondary" sx={{ textAlign: "center" }}>
               {product &&
@@ -77,7 +75,13 @@ const ProductPage = () => {
             </Box>
           </CardContent>
           <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-            <Button variant="contained" size="small" onClick={handleAddToCart}>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() =>
+                addProductToCart({ productId: product!._id!, quantity: 1 })
+              }
+            >
               Add to Cart
             </Button>
             <Button variant="outlined" size="small" onClick={handleCompare}>

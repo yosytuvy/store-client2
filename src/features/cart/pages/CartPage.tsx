@@ -1,7 +1,8 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import ProductInCartCard from "../components/ProductInCartCard";
 import { getProductsIds } from "../utils/cartUtil";
 import { useAppSelector } from "../../../redux/hooks";
+import SignupModal from "../../users/components/SignupModal";
 
 const CartPage = () => {
   const products = useAppSelector((state) => state.products.products);
@@ -34,7 +35,7 @@ const CartPage = () => {
         productsInCart.map((product, i) => (
           <ProductInCartCard key={i} product={product!} />
         ))}
-      <Button
+      <Box
         sx={{
           color: "white",
           backgroundColor: "black",
@@ -47,8 +48,8 @@ const CartPage = () => {
           },
         }}
       >
-        checkout
-      </Button>
+        <SignupModal/>
+      </Box>
     </Box>
   );
 };

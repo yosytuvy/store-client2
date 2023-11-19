@@ -1,41 +1,53 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import {
-  FormControl,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-} from "@mui/material";
-import { MouseEvent, useState } from "react";
-const PasswordField = () => {
+import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
+import { useState, FC } from "react";
+import { Controller, FieldError } from "react-hook-form";
+import PasswordFieldProps from "../types/FieldProps";
+import errorToTrue from "../utils/errorToTrue";
+import ErrorMessage from "./ErrorMessage";
+import PasswordVisibilityToggle from "./PasswordVisibilityToggle";
+
+const ControlledPasswordField: FC<PasswordFieldProps> = ({
+  label,
+  name,
+  control,
+  errors,
+  sx,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-  };
+  const error = errors[name] as FieldError;
   return (
     <>
-      <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-        <OutlinedInput
-          type={showPassword ? "text" : "password"}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                edge="end"
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          }
-          label="Password"
+      <FormControl fullWidth sx={sx ? sx : { mb: "1rem" }}>
+        <InputLabel
+          htmlFor="outlined-adornment-password"
+          {...errorToTrue(error)}
+          required
+        >
+          {label}
+        </InputLabel>
+        <Controller
+          name={name}
+          control={control}
+          render={({ field }) => (
+            <OutlinedInput
+              {...field}
+              {...errorToTrue(error)}
+              required
+              type={showPassword ? "text" : "password"}
+              label={label}
+              endAdornment={
+                <PasswordVisibilityToggle
+                  setShowPassword={setShowPassword}
+                  showPassword={showPassword}
+                />
+              }
+            />
+          )}
         />
+        {error ? <ErrorMessage errorMessage={error} /> : null}
       </FormControl>
     </>
   );
 };
 
-export default PasswordField;
+export default ControlledPasswordField;
